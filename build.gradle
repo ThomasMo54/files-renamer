@@ -27,7 +27,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.motompro.filesrenamer'
-    mainClass = 'com.motompro.filesrenamer.HelloApplication'
+    mainClass = 'com.motompro.filesrenamer.FilesRenamerApplication'
 }
 
 [compileKotlin, compileTestKotlin].forEach {
