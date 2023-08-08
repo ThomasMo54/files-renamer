@@ -1,5 +1,8 @@
 package com.motompro.filesrenamer.modifier
 
+import com.motompro.filesrenamer.controller.MainController
+import com.motompro.filesrenamer.controller.ModifierController
+import javafx.scene.Node
 import java.io.File
 
 /**
@@ -16,10 +19,19 @@ class ReplaceNthModifier(
 ) : Modifier {
 
     override fun apply(file: File) {
+        require(n > 0)
         val oldName = file.nameWithoutExtension
         val nthOccurrenceIndex = Modifier.findNthOccurrenceIndex(oldName, string, n)
         if (nthOccurrenceIndex == -1) return
         val newName = oldName.replaceRange(nthOccurrenceIndex, string.length, replacement)
         Modifier.renameFile(file, newName)
+    }
+
+    override fun createComponent(mainController: MainController): Node {
+        val description = mapOf(
+            "Texte" to string,
+            "Occurrence" to "$n${if (n > 1) "ème" else "ere"}",
+        )
+        return ModifierController.createModifierComponent("Remplacer texte", description, mainController)
     }
 }

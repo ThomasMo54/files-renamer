@@ -1,5 +1,8 @@
 package com.motompro.filesrenamer.modifier
 
+import com.motompro.filesrenamer.controller.MainController
+import com.motompro.filesrenamer.controller.ModifierController
+import javafx.scene.Node
 import java.io.File
 
 /**
@@ -13,6 +16,7 @@ class AddAtIndexModifier(
 ) : Modifier {
 
     override fun apply(file: File) {
+        require(index > 0)
         val oldName = file.nameWithoutExtension
         if (oldName.length <= index) {
             val newName = "$oldName$string${file.extension}"
@@ -23,5 +27,13 @@ class AddAtIndexModifier(
         val lastPart = oldName.substring(index)
         val newName = "$firstPart$string$lastPart${file.extension}"
         Modifier.renameFile(file, newName)
+    }
+
+    override fun createComponent(mainController: MainController): Node {
+        val description = mapOf(
+            "Texte" to string,
+            "Position" to index.toString(),
+        )
+        return ModifierController.createModifierComponent("Ajouter texte", description, mainController)
     }
 }

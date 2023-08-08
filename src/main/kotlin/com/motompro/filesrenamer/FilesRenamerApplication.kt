@@ -8,7 +8,6 @@ import javafx.stage.Stage
 
 private const val DEFAULT_WIDTH = 720.0
 private const val DEFAULT_HEIGHT = 480.0
-private const val TITLE = "Files Renamer"
 
 class FilesRenamerApplication : Application() {
 
@@ -37,6 +36,8 @@ class FilesRenamerApplication : Application() {
     }
 
     companion object {
+        const val TITLE = "Files Renamer"
+
         lateinit var INSTANCE: FilesRenamerApplication
     }
 }

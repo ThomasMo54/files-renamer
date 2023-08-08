@@ -1,5 +1,7 @@
 package com.motompro.filesrenamer.modifier
 
+import com.motompro.filesrenamer.controller.MainController
+import javafx.scene.Node
 import java.io.File
 import java.nio.file.FileSystems
 
@@ -14,6 +16,11 @@ interface Modifier {
      * @param file The file that will be renamed
      */
     fun apply(file: File)
+
+    /**
+     * Create a modifier component containing the data provided to this modifier
+     */
+    fun createComponent(mainController: MainController): Node
 
     companion object {
         /**

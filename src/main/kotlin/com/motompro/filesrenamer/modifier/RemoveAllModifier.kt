@@ -1,5 +1,8 @@
 package com.motompro.filesrenamer.modifier
 
+import com.motompro.filesrenamer.controller.MainController
+import com.motompro.filesrenamer.controller.ModifierController
+import javafx.scene.Node
 import java.io.File
 
 /**
@@ -14,5 +17,13 @@ class RemoveAllModifier(
         val oldName = file.nameWithoutExtension
         val newName = oldName.replace(string, "")
         Modifier.renameFile(file, newName)
+    }
+
+    override fun createComponent(mainController: MainController): Node {
+        val description = mapOf(
+            "Texte" to string,
+            "Occurrence" to "Toutes",
+        )
+        return ModifierController.createModifierComponent("Supprimer texte", description, mainController)
     }
 }
