@@ -1,8 +1,10 @@
 package com.motompro.filesrenamer.modifier
 
+import com.motompro.filesrenamer.FilesRenamerApplication
 import com.motompro.filesrenamer.controller.MainController
 import com.motompro.filesrenamer.controller.ModifierController
 import javafx.scene.Node
+import javafx.scene.image.Image
 import java.io.File
 
 /**
@@ -14,6 +16,8 @@ class AddAtIndexModifier(
     private val index: Int,
     private val string: String,
 ) : Modifier {
+
+    private val icon = Image(FilesRenamerApplication::class.java.getResourceAsStream("./image/add-text-icon.png"))
 
     override fun apply(file: File): String {
         require(index > 0)
@@ -31,6 +35,6 @@ class AddAtIndexModifier(
             "Texte" to string,
             "Position" to index.toString(),
         )
-        return ModifierController.createModifierComponent("Ajouter texte", description, mainController)
+        return ModifierController.createModifierComponent("Ajouter texte", icon, description, mainController)
     }
 }

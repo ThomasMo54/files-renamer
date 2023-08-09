@@ -1,8 +1,10 @@
 package com.motompro.filesrenamer.modifier
 
+import com.motompro.filesrenamer.FilesRenamerApplication
 import com.motompro.filesrenamer.controller.MainController
 import com.motompro.filesrenamer.controller.ModifierController
 import javafx.scene.Node
+import javafx.scene.image.Image
 import java.io.File
 
 /**
@@ -14,6 +16,8 @@ class RemoveNthModifier(
     private val string: String,
     private val n: Int = 1,
 ) : Modifier {
+
+    private val icon = Image(FilesRenamerApplication::class.java.getResourceAsStream("./image/remove-text-icon.png"))
 
     override fun apply(file: File): String {
         require(n > 0)
@@ -28,6 +32,6 @@ class RemoveNthModifier(
             "Texte" to string,
             "Occurrence" to "$n${if (n > 1) "ème" else "ere"}",
         )
-        return ModifierController.createModifierComponent("Supprimer texte", description, mainController)
+        return ModifierController.createModifierComponent("Supprimer texte", icon, description, mainController)
     }
 }

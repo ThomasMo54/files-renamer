@@ -73,6 +73,7 @@ class AddModifierController {
         scene.root = parent
         val stage = scene.window as Stage
         stage.title = title
+        stage.icons.add(FilesRenamerApplication.INSTANCE.appIcon)
         stage.width = width
         stage.height = height
     }

@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -13,11 +14,16 @@
    <children>
       <VBox prefWidth="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
+            <HBox alignment="CENTER_LEFT" spacing="5.0">
+               <children>
+                  <ImageView fx:id="iconImage" fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
             <VBox fx:id="descriptionBox" prefWidth="200.0">
                <VBox.margin>
                   <Insets top="10.0" />
@@ -31,7 +37,7 @@
                <graphic>
                   <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/arrow-up.png" />
+                        <Image url="@image/arrow-up-icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -40,7 +46,7 @@
                <graphic>
                   <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/remove.png" />
+                        <Image url="@image/remove-icon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -49,7 +55,7 @@
                <graphic>
                   <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/arrow-down.png" />
+                        <Image url="@image/arrow-down-icon.png" />
                      </image>
                   </ImageView>
                </graphic>

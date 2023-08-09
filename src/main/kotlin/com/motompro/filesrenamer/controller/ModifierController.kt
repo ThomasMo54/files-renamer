@@ -4,8 +4,9 @@ import com.motompro.filesrenamer.FilesRenamerApplication
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
-import javafx.scene.Node
 import javafx.scene.control.Button
+import javafx.scene.image.Image
+import javafx.scene.image.ImageView
 import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.Pane
 import javafx.scene.layout.VBox
@@ -16,6 +17,11 @@ class ModifierController {
     var title: String = ""
         set(value) {
             titleText.text = value
+            field = value
+        }
+    var icon: Image? = null
+        set(value) {
+            iconImage.image = value
             field = value
         }
     var description: Map<String, String> = emptyMap()
@@ -32,6 +38,9 @@ class ModifierController {
 
     @FXML
     private lateinit var parentPane: AnchorPane
+
+    @FXML
+    private lateinit var iconImage: ImageView
 
     @FXML
     private lateinit var titleText: Text
@@ -74,11 +83,12 @@ class ModifierController {
     }
 
     companion object {
-        fun createModifierComponent(title: String, description: Map<String, String>, mainController: MainController): AnchorPane {
+        fun createModifierComponent(title: String, icon: Image, description: Map<String, String>, mainController: MainController): AnchorPane {
             val fxmlLoader = FXMLLoader(FilesRenamerApplication::class.java.getResource("modifier-component.fxml"))
             val anchorPane = fxmlLoader.load<AnchorPane>()
             val controller = fxmlLoader.getController<ModifierController>()
             controller.title = title
+            controller.icon = icon
             controller.description = description
             controller.mainController = mainController
             return anchorPane

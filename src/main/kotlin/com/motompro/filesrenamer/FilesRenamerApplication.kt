@@ -4,12 +4,15 @@ import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Scene
 import javafx.scene.control.Alert
+import javafx.scene.image.Image
 import javafx.stage.Stage
 
 private const val DEFAULT_WIDTH = 720.0
 private const val DEFAULT_HEIGHT = 480.0
 
 class FilesRenamerApplication : Application() {
+
+    val appIcon = Image(FilesRenamerApplication::class.java.getResourceAsStream("./image/app-icon.png"))
 
     init {
         INSTANCE = this
@@ -19,6 +22,7 @@ class FilesRenamerApplication : Application() {
         val fxmlLoader = FXMLLoader(FilesRenamerApplication::class.java.getResource("main-view.fxml"))
         val scene = Scene(fxmlLoader.load(), DEFAULT_WIDTH, DEFAULT_HEIGHT)
         stage.title = TITLE
+        stage.icons.add(appIcon)
         stage.scene = scene
         stage.show()
     }

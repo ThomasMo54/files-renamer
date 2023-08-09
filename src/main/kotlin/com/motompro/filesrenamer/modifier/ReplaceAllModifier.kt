@@ -1,8 +1,10 @@
 package com.motompro.filesrenamer.modifier
 
+import com.motompro.filesrenamer.FilesRenamerApplication
 import com.motompro.filesrenamer.controller.MainController
 import com.motompro.filesrenamer.controller.ModifierController
 import javafx.scene.Node
+import javafx.scene.image.Image
 import java.io.File
 
 /**
@@ -16,6 +18,8 @@ class ReplaceAllModifier(
     private val replacement: String,
 ) : Modifier {
 
+    private val icon = Image(FilesRenamerApplication::class.java.getResourceAsStream("./image/replace-text-icon.png"))
+
     override fun apply(file: File): String {
         val oldName = file.nameWithoutExtension
         return oldName.replace(string, replacement)
@@ -27,6 +31,6 @@ class ReplaceAllModifier(
             "Remplacement" to replacement,
             "Occurrence" to "Toutes",
         )
-        return ModifierController.createModifierComponent("Remplacer texte", description, mainController)
+        return ModifierController.createModifierComponent("Remplacer texte", icon, description, mainController)
     }
 }

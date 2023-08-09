@@ -1,8 +1,10 @@
 package com.motompro.filesrenamer.modifier
 
+import com.motompro.filesrenamer.FilesRenamerApplication
 import com.motompro.filesrenamer.controller.MainController
 import com.motompro.filesrenamer.controller.ModifierController
 import javafx.scene.Node
+import javafx.scene.image.Image
 import java.io.File
 
 /**
@@ -18,6 +20,8 @@ class ReplaceNthModifier(
     private val n: Int = 1,
 ) : Modifier {
 
+    private val icon = Image(FilesRenamerApplication::class.java.getResourceAsStream("./image/replace-text-icon.png"))
+
     override fun apply(file: File): String {
         require(n > 0)
         val oldName = file.nameWithoutExtension
@@ -32,6 +36,6 @@ class ReplaceNthModifier(
             "Remplacement" to replacement,
             "Occurrence" to "$n${if (n > 1) "ème" else "ere"}",
         )
-        return ModifierController.createModifierComponent("Remplacer texte", description, mainController)
+        return ModifierController.createModifierComponent("Remplacer texte", icon, description, mainController)
     }
 }

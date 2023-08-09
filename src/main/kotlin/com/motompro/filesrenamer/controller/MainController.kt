@@ -107,6 +107,7 @@ class MainController {
         val stage = Stage()
         stage.initModality(Modality.APPLICATION_MODAL)
         stage.title = FilesRenamerApplication.TITLE
+        stage.icons.add(FilesRenamerApplication.INSTANCE.appIcon)
         stage.scene = scene
         stage.showAndWait()
     }
