@@ -31,8 +31,22 @@ class FilesRenamerApplication : Application() {
     fun showErrorAlert(title: String, message: String) {
         val errorAlert = Alert(Alert.AlertType.ERROR)
         errorAlert.title = title
+        errorAlert.headerText = title
         errorAlert.contentText = message
         errorAlert.showAndWait()
+    }
+
+    /**
+     * Show an info dialog containing the given message
+     * @param title The dialog's title
+     * @param message The dialog's content
+     */
+    fun showInfoAlert(title: String, message: String) {
+        val infoAlert = Alert(Alert.AlertType.INFORMATION)
+        infoAlert.title = title
+        infoAlert.headerText = title
+        infoAlert.contentText = message
+        infoAlert.showAndWait()
     }
 
     companion object {

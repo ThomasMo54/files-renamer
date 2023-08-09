@@ -15,13 +15,12 @@ class RemoveNthModifier(
     private val n: Int = 1,
 ) : Modifier {
 
-    override fun apply(file: File) {
+    override fun apply(file: File): String {
         require(n > 0)
         val oldName = file.nameWithoutExtension
         val nthOccurrenceIndex = Modifier.findNthOccurrenceIndex(oldName, string, n)
-        if (nthOccurrenceIndex == -1) return
-        val newName = oldName.replaceRange(nthOccurrenceIndex, string.length, "")
-        Modifier.renameFile(file, newName)
+        if (nthOccurrenceIndex == -1) return oldName
+        return oldName.replaceRange(nthOccurrenceIndex, string.length, "")
     }
 
     override fun createComponent(mainController: MainController): Node {

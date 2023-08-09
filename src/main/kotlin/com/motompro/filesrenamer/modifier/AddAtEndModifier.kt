@@ -13,9 +13,8 @@ class AddAtEndModifier(
     private val string: String,
 ) : Modifier {
 
-    override fun apply(file: File) {
-        val newName = "${file.nameWithoutExtension}$string${file.extension}"
-        Modifier.renameFile(file, newName)
+    override fun apply(file: File): String {
+        return "${file.nameWithoutExtension}$string${file.extension}"
     }
 
     override fun createComponent(mainController: MainController): Node {

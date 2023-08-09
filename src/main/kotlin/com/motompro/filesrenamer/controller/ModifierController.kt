@@ -51,18 +51,19 @@ class ModifierController {
     @FXML
     private fun onUpButtonClick(event: ActionEvent) {
         if (childIndex == 0) return
-        val modifier = mainController.fileRenamer.modifiers[childIndex]
-        mainController.fileRenamer.modifiers.removeAt(childIndex)
-        mainController.fileRenamer.modifiers.add(childIndex - 1, modifier)
-        mainController.updateModifiers()
+        moveComponent(-1)
     }
 
     @FXML
     private fun onDownButtonClick(event: ActionEvent) {
         if (childIndex == childAmount - 2) return
+        moveComponent(1)
+    }
+
+    private fun moveComponent(amount: Int) {
         val modifier = mainController.fileRenamer.modifiers[childIndex]
         mainController.fileRenamer.modifiers.removeAt(childIndex)
-        mainController.fileRenamer.modifiers.add(childIndex + 1, modifier)
+        mainController.fileRenamer.modifiers.add(childIndex + amount, modifier)
         mainController.updateModifiers()
     }
 

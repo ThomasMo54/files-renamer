@@ -18,18 +18,18 @@ class ReplaceNthModifier(
     private val n: Int = 1,
 ) : Modifier {
 
-    override fun apply(file: File) {
+    override fun apply(file: File): String {
         require(n > 0)
         val oldName = file.nameWithoutExtension
         val nthOccurrenceIndex = Modifier.findNthOccurrenceIndex(oldName, string, n)
-        if (nthOccurrenceIndex == -1) return
-        val newName = oldName.replaceRange(nthOccurrenceIndex, string.length, replacement)
-        Modifier.renameFile(file, newName)
+        if (nthOccurrenceIndex == -1) return oldName
+        return oldName.replaceRange(nthOccurrenceIndex, string.length, replacement)
     }
 
     override fun createComponent(mainController: MainController): Node {
         val description = mapOf(
             "Texte" to string,
+            "Remplacement" to replacement,
             "Occurrence" to "$n${if (n > 1) "ème" else "ere"}",
         )
         return ModifierController.createModifierComponent("Remplacer texte", description, mainController)

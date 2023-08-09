@@ -46,6 +46,7 @@ class MainController {
     private lateinit var modifierList: VBox
 
     val fileRenamer = FileRenamer()
+    private var isPreviewing = false
 
     @FXML
     private fun onOpenButtonClick(event: ActionEvent) {
@@ -58,6 +59,8 @@ class MainController {
         }
         val files = selectedDir.listFiles()?.filter { it.isFile } ?: emptyList()
         if (files.isEmpty()) return
+        isPreviewing = false
+        updateVisualizeButton()
         fileList.children.clear()
         fileList.children.addAll(files.map { Text(it.name) })
         fileRenamer.files.clear()
@@ -66,10 +69,31 @@ class MainController {
 
     @FXML
     private fun onVisualizeButtonClick(event: ActionEvent) {
+        isPreviewing = !isPreviewing
+        val files = if (isPreviewing) {
+            fileRenamer.renamePreview
+        } else {
+            fileRenamer.files
+        }
+        fileList.children.clear()
+        fileList.children.addAll(files.map { Text(it.name) })
+        updateVisualizeButton()
+    }
+
+    private fun updateVisualizeButton() {
+        if (isPreviewing) {
+            visualizeButton.text = "Annuler"
+        } else {
+            visualizeButton.text = "Prévisualiser"
+        }
     }
 
     @FXML
     private fun onApplyButtonClick(event: ActionEvent) {
+        fileRenamer.apply()
+        fileList.children.clear()
+        fileList.children.addAll(fileRenamer.files.map { Text(it.name) })
+        FilesRenamerApplication.INSTANCE.showInfoAlert("Succès", "Les fichiers ont bien été modifiés")
     }
 
     @FXML

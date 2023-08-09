@@ -16,15 +16,15 @@ class ReplaceAllModifier(
     private val replacement: String,
 ) : Modifier {
 
-    override fun apply(file: File) {
+    override fun apply(file: File): String {
         val oldName = file.nameWithoutExtension
-        val newName = oldName.replace(string, replacement)
-        Modifier.renameFile(file, newName)
+        return oldName.replace(string, replacement)
     }
 
     override fun createComponent(mainController: MainController): Node {
         val description = mapOf(
             "Texte" to string,
+            "Remplacement" to replacement,
             "Occurrence" to "Toutes",
         )
         return ModifierController.createModifierComponent("Remplacer texte", description, mainController)

@@ -13,10 +13,9 @@ class RemoveAllModifier(
     private val string: String,
 ) : Modifier {
 
-    override fun apply(file: File) {
+    override fun apply(file: File): String {
         val oldName = file.nameWithoutExtension
-        val newName = oldName.replace(string, "")
-        Modifier.renameFile(file, newName)
+        return oldName.replace(string, "")
     }
 
     override fun createComponent(mainController: MainController): Node {

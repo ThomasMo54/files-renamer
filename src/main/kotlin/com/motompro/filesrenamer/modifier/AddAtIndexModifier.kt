@@ -15,18 +15,15 @@ class AddAtIndexModifier(
     private val string: String,
 ) : Modifier {
 
-    override fun apply(file: File) {
+    override fun apply(file: File): String {
         require(index > 0)
         val oldName = file.nameWithoutExtension
         if (oldName.length <= index) {
-            val newName = "$oldName$string${file.extension}"
-            Modifier.renameFile(file, newName)
-            return
+            return "$oldName$string${file.extension}"
         }
         val firstPart = oldName.substring(0, index)
         val lastPart = oldName.substring(index)
-        val newName = "$firstPart$string$lastPart${file.extension}"
-        Modifier.renameFile(file, newName)
+        return "$firstPart$string$lastPart${file.extension}"
     }
 
     override fun createComponent(mainController: MainController): Node {

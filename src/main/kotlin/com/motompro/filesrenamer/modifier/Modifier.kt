@@ -12,10 +12,11 @@ interface Modifier {
 
     /**
      * Apply the transformation to the [File] name. If the transformation can't be applied for some reason, the method
-     * will just return without an exception
+     * will just return the old name of the file.
      * @param file The file that will be renamed
+     * @return The new [File] name
      */
-    fun apply(file: File)
+    fun apply(file: File): String
 
     /**
      * Create a modifier component containing the data provided to this modifier
@@ -23,16 +24,6 @@ interface Modifier {
     fun createComponent(mainController: MainController): Node
 
     companion object {
-        /**
-         * Rename the given file with the given new name
-         * @param file The file
-         * @param newName The new name
-         */
-        fun renameFile(file: File, newName: String) {
-            val newFile = File("${file.parent}${FileSystems.getDefault().separator}$newName")
-            file.renameTo(newFile)
-        }
-
         /**
          * Find the nth occurrence's index of a pattern in a string
          * @param string The analyzed string

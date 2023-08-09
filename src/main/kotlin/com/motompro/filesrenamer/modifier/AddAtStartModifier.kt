@@ -13,9 +13,8 @@ class AddAtStartModifier(
     private val string: String,
 ) : Modifier {
 
-    override fun apply(file: File) {
-        val newName = "$string${file.name}"
-        Modifier.renameFile(file, newName)
+    override fun apply(file: File): String {
+        return "$string${file.name}"
     }
 
     override fun createComponent(mainController: MainController): Node {
