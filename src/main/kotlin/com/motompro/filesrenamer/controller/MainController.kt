@@ -98,8 +98,8 @@ class MainController {
 
     @FXML
     private fun onAddModifierButtonClick(event: ActionEvent) {
-        val dialogFxmlLoader = FXMLLoader(FilesRenamerApplication::class.java.getResource("add-modifier-dialog.fxml"))
-        val parent = dialogFxmlLoader.load<Parent>()
+        val dialogFxmlLoader = FXMLLoader()
+        val parent = dialogFxmlLoader.load<Parent>(FilesRenamerApplication.getResourceStream("add-modifier-dialog.fxml"))
         val controller = dialogFxmlLoader.getController<AddModifierController>()
         controller.mainController = this
 

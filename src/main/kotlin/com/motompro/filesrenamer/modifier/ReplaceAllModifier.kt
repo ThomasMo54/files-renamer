@@ -18,7 +18,7 @@ class ReplaceAllModifier(
     private val replacement: String,
 ) : Modifier {
 
-    private val icon = Image(FilesRenamerApplication::class.java.getResourceAsStream("./image/replace-text-icon.png"))
+    private val icon = Image(FilesRenamerApplication.getResourceStream("image/replace-text-icon.png"))
 
     override fun apply(file: File): String {
         val oldName = file.nameWithoutExtension

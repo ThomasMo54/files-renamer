@@ -65,8 +65,8 @@ class AddModifierController {
         width: Double,
         height: Double,
     ) {
-        val fxmlLoader = FXMLLoader(FilesRenamerApplication::class.java.getResource(fxmlFileName))
-        val parent = fxmlLoader.load<Parent>()
+        val fxmlLoader = FXMLLoader()
+        val parent = fxmlLoader.load<Parent>(FilesRenamerApplication.getResourceStream(fxmlFileName))
         val controller = fxmlLoader.getController<T>()
         controller.mainController = mainController
 

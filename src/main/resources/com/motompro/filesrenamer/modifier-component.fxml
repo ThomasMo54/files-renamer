@@ -35,29 +35,17 @@
          <children>
             <Button fx:id="upButton" alignment="TOP_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onUpButtonClick" prefHeight="15.0" prefWidth="15.0">
                <graphic>
-                  <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@image/arrow-up-icon.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="upButtonImage" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
             <Button fx:id="removeButton" alignment="TOP_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onRemoveButtonClick" prefHeight="15.0" prefWidth="15.0">
                <graphic>
-                  <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@image/remove-icon.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="removeButtonImage" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
             <Button fx:id="downButton" mnemonicParsing="false" onAction="#onDownButtonClick" prefHeight="15.0" prefWidth="15.0">
                <graphic>
-                  <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@image/arrow-down-icon.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="downButtonImage" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
          </children>

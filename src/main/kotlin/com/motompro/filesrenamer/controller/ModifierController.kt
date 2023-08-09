@@ -49,13 +49,20 @@ class ModifierController {
     private lateinit var descriptionBox: VBox
 
     @FXML
-    private lateinit var upButton: Button
+    private lateinit var upButtonImage: ImageView
 
     @FXML
-    private lateinit var downButton: Button
+    private lateinit var downButtonImage: ImageView
 
     @FXML
-    private lateinit var removeButton: Button
+    private lateinit var removeButtonImage: ImageView
+
+    @FXML
+    private fun initialize() {
+        upButtonImage.image = Image(FilesRenamerApplication.getResourceStream("image/arrow-up-icon.png"))
+        downButtonImage.image = Image(FilesRenamerApplication.getResourceStream("image/arrow-down-icon.png"))
+        removeButtonImage.image = Image(FilesRenamerApplication.getResourceStream("image/remove-icon.png"))
+    }
 
     @FXML
     private fun onUpButtonClick(event: ActionEvent) {
@@ -84,8 +91,8 @@ class ModifierController {
 
     companion object {
         fun createModifierComponent(title: String, icon: Image, description: Map<String, String>, mainController: MainController): AnchorPane {
-            val fxmlLoader = FXMLLoader(FilesRenamerApplication::class.java.getResource("modifier-component.fxml"))
-            val anchorPane = fxmlLoader.load<AnchorPane>()
+            val fxmlLoader = FXMLLoader()
+            val anchorPane = fxmlLoader.load<AnchorPane>(FilesRenamerApplication.getResourceStream("modifier-component.fxml"))
             val controller = fxmlLoader.getController<ModifierController>()
             controller.title = title
             controller.icon = icon

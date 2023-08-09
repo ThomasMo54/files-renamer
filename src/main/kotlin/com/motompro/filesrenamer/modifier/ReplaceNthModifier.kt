@@ -20,7 +20,7 @@ class ReplaceNthModifier(
     private val n: Int = 1,
 ) : Modifier {
 
-    private val icon = Image(FilesRenamerApplication::class.java.getResourceAsStream("./image/replace-text-icon.png"))
+    private val icon = Image(FilesRenamerApplication.getResourceStream("image/replace-text-icon.png"))
 
     override fun apply(file: File): String {
         require(n > 0)

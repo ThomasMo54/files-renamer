@@ -17,7 +17,7 @@ class RemoveNthModifier(
     private val n: Int = 1,
 ) : Modifier {
 
-    private val icon = Image(FilesRenamerApplication::class.java.getResourceAsStream("./image/remove-text-icon.png"))
+    private val icon = Image(FilesRenamerApplication.getResourceStream("image/remove-text-icon.png"))
 
     override fun apply(file: File): String {
         require(n > 0)
