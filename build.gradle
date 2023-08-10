@@ -6,10 +6,11 @@ plugins {
     id 'org.javamodularity.moduleplugin' version '1.8.12'
     id 'org.openjfx.javafxplugin' version '0.0.13'
     id 'org.beryx.jlink' version '2.25.0'
+    id 'edu.sc.seis.launch4j' version '3.0.4'
 }
 
 group 'com.motompro'
-version '1.0.0'
+version '1.0.3'
 
 repositories {
     mavenCentral()
@@ -52,10 +53,10 @@ publishing {
     repositories {
         maven {
             name = "FilesRenamer"
-            url = "https://maven.pkg.github.com/ThomasMo54/files-renamer"
+            url = uri("https://maven.pkg.github.com/ThomasMo54/files-renamer")
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
             }
         }
     }
@@ -77,6 +78,30 @@ jar {
         configurations.compileClasspath.collect { if (it.isDirectory()) it else zipTree(it) }
     }
 }
+
+launch4j {
+    outfile = "FilesRenamer.exe"
+    bundledJrePath = 'jre'
+    jreMinVersion = '17'
+    mainClassName = 'com.motompro.filesrenamer.MainKt'
+    productName = 'FilesRenamer'
+    jarTask = project.tasks.jar
+}
+
+tasks.register("packageExecutableDistribution", Zip) {
+    archiveFileName = "FilesRenamer-${version}.zip"
+    destinationDirectory = file("$buildDir/distExecutable")
+
+    from "$buildDir/launch4j"
+}
+
+tasks.register("addJreToDistributable", Copy) {
+    from zipTree("jre/windows_jre_17.zip")
+    destinationDir = file("$buildDir/launch4j")
+}
+
+tasks.named("packageExecutableDistribution").get().dependsOn("createExe")
+tasks.named("packageExecutableDistribution").get().dependsOn("addJreToDistributable")
 
 jlink {
     imageZip.set(project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip"))
