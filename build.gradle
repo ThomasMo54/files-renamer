@@ -1,7 +1,6 @@
 plugins {
     id 'java'
     id 'application'
-    id 'maven-publish'
     id 'org.jetbrains.kotlin.jvm' version '1.8.10'
     id 'org.javamodularity.moduleplugin' version '1.8.12'
     id 'org.openjfx.javafxplugin' version '0.0.13'
@@ -10,7 +9,7 @@ plugins {
 }
 
 group 'com.motompro'
-version '1.0.3'
+version '1.0.4'
 
 repositories {
     mavenCentral()
@@ -49,19 +48,6 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "FilesRenamer"
-            url = uri("https://maven.pkg.github.com/ThomasMo54/files-renamer")
-            credentials {
-                username = System.getenv("USERNAME")
-                password = System.getenv("TOKEN")
-            }
-        }
-    }
-}
-
 test {
     useJUnitPlatform()
 }
@@ -89,7 +75,7 @@ launch4j {
 }
 
 tasks.register("packageExecutableDistribution", Zip) {
-    archiveFileName = "FilesRenamer-${version}.zip"
+    archiveFileName = "FilesRenamer.zip"
     destinationDirectory = file("$buildDir/distExecutable")
 
     from "$buildDir/launch4j"
@@ -102,12 +88,3 @@ tasks.register("addJreToDistributable", Copy) {
 
 tasks.named("packageExecutableDistribution").get().dependsOn("createExe")
 tasks.named("packageExecutableDistribution").get().dependsOn("addJreToDistributable")
-
-jlink {
-    imageZip.set(project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip"))
-    options.set(['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages', '--module-path', "${System.getenv("JMOD_HOME")}", "--add-modules", "javafx.controls,javafx.fxml"])
-}
-
-jlinkZip {
-    group = 'distribution'
-}
