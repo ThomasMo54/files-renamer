@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'com.motompro'
-version '1.0.7'
+version '1.0.8'
 
 repositories {
     mavenCentral()
@@ -71,6 +71,7 @@ launch4j {
     jreMinVersion = '17'
     mainClassName = 'com.motompro.filesrenamer.MainKt'
     productName = 'FilesRenamer'
+    icon = "${projectDir}/icon/app-icon.ico"
     jarTask = project.tasks.jar
 }
 
