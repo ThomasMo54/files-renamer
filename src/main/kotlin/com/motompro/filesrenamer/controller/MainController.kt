@@ -90,10 +90,18 @@ class MainController {
 
     @FXML
     private fun onApplyButtonClick(event: ActionEvent) {
-        fileRenamer.apply()
+        val modifiedAmount = fileRenamer.apply()
         fileList.children.clear()
         fileList.children.addAll(fileRenamer.files.map { Text(it.name) })
-        FilesRenamerApplication.INSTANCE.showInfoAlert("Succès", "Les fichiers ont bien été modifiés")
+        if (modifiedAmount == 0) {
+            FilesRenamerApplication.INSTANCE.showInfoAlert("Succès", "Aucun fichier n'a été modifié")
+            return
+        }
+        if (modifiedAmount == 1) {
+            FilesRenamerApplication.INSTANCE.showInfoAlert("Succès", "1 fichier a été modifié")
+            return
+        }
+        FilesRenamerApplication.INSTANCE.showInfoAlert("Succès", "$modifiedAmount fichiers ont été modifiés")
     }
 
     @FXML
