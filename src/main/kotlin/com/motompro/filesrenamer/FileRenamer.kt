@@ -20,15 +20,22 @@ class FileRenamer {
             }
         }
 
-    fun apply() {
+    /**
+     * Apply modifiers on all files
+     * @return the amount of modified files
+     */
+    fun apply(): Int {
+        var modifiedAmount = 0
         val modifiedFiles = files.map { file ->
             var modifiedFile = file
             modifiers.forEach { modifiedFile = File(it.apply(modifiedFile)) }
+            if (modifiedFile.name != file.name) modifiedAmount++
             renameFile(file, modifiedFile.name)
             modifiedFile
         }
         files.clear()
         files.addAll(modifiedFiles)
+        return modifiedAmount
     }
 
     private fun renameFile(file: File, newName: String) {
